@@ -1,7 +1,7 @@
 <%= title(@lesson.display_title) %>
 
 <div class="bg-white dark:bg-gray-900">
-  <div class="page-container">
+  <div class="page-container pb-8">
 
     <%= render 'lessons/header', lesson: @lesson %>
 
@@ -36,21 +36,17 @@
     </main>
 
     <% if user_signed_in? && @lesson.accepts_submission? %>
-      <div class="pt-8 grid grid-cols-12">
-        <div class="border border-gray dark:border-white/5 rounded-lg p-4 my-10 dark:bg-gray-800 col-span-full lg:col-span-8 lg:col-start-3 xl:col-span-7 xl:col-start-2">
+      <div class="py-8 grid grid-cols-12">
+        <div class="border border-gray dark:border-white/5 rounded-lg p-4 dark:bg-gray-800 col-span-full lg:col-span-8 lg:col-start-3 xl:col-span-7 xl:col-start-2">
           <%= render 'lessons/project_submissions', lesson: @lesson, limit: 10 %>
         </div>
       </div>
     <% end %>
-  </div>
-</div>
 
-<div class="bg-gray-100 dark:bg-gray-800/30 text-center">
-  <div class="page-container">
-    <%= render CardComponent.new do |card| %>
-      <% card.with_body do %>
-        <%= render 'lesson_buttons', lesson: @lesson, course: @lesson.course, user: @user %>
-      <% end %>
-    <% end %>
+    <div class="grid grid-cols-12">
+      <div class="pt-8 col-span-full lg:col-span-8 lg:col-start-3 xl:col-span-7 xl:col-start-2 border-t border-gray-100 dark:border-white/5">
+         <%= render 'lesson_buttons', lesson: @lesson, course: @lesson.course, user: @user %>
+      </div>
+    </div>
   </div>
 </div>
