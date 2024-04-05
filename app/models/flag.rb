@@ -21,4 +21,16 @@ class Flag < ApplicationRecord
 
   scope :by_status, ->(status) { where(status:) }
   scope :count_for, ->(status) { by_status(status).count }
+
+  def project_submission_owner
+    project_submission.user
+  end
+
+  def resolve(action_taken:, resolved_by:)
+    update(
+      status: :resolved,
+      taken_action: action_taken,
+      resolved_by_id: resolved_by.id
+    )
+  end
 end
